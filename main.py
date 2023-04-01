@@ -17,7 +17,7 @@ with col2:
     st.info(content)
 
 
-col3,  col4 = st.columns(2)
+col3, empty_col, col4 = st.columns([1.5, 0.5, 1.5]) # the numbers inside shows the relative dimesions. The spce column gaves a space between the columns
 
 data = pandas.read_csv('data.csv', sep=";") # storing the data in this variabale. Sep is the columns divider
 
@@ -25,13 +25,15 @@ data = pandas.read_csv('data.csv', sep=";") # storing the data in this variabale
 with col3:
     for index, row in data[:10].iterrows():     # iterrows() function eterates on every raw of the file
         titles = st.header(row['title'])
+        descriptions = st.write(row['description'])
         images = st.image(f"images/{row['image'][:10]}")
-
+        st.write(f"[Source Code]({row['url']})")
 
 
 with col4:
     for index, row in data[10:].iterrows():  # iterrows() function eterates on every raw of the file
         titles = st.header(row['title'])
+        descriptions = st.write(row['description'])
         images = st.image(f"images/{row['image']}")
-
+        st.write(f"[Source Code]({row['url']})")
 
